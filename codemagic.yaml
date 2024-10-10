@@ -1,0 +1,19 @@
+workflows:
+  ios-build:
+    name: Build iOS App
+    environment:
+      flutter: stable
+      xcode: latest
+    scripts:
+      - name: Fetch Flutter dependencies
+        script: |
+          flutter packages get
+      - name: Build iOS
+        script: |
+          flutter build ios --release --no-codesign
+    artifacts:
+      - build/ios/ipa/**/*.ipa
+    publishing:
+      email:
+        recipients:
+          - your-email@example.com
